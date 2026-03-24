@@ -32,8 +32,8 @@ const loginEmployee = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,   // set to true in production (HTTPS)
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
     });
 
     return res.json({ message: "Login successful", role: user.role });
@@ -49,8 +49,8 @@ router.post("/api/auth/login", validate(loginSchema, "body"), loginEmployee);
 router.post("/api/auth/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
   });
   return res.json({ message: "Logged out successfully" });
 });
