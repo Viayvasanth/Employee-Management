@@ -6,10 +6,13 @@ const router = express.Router();
 
 // GET OWN PROFILE — any logged in user (admin or employee)
 router.get("/api/profile", verifyToken, async (req, res) => {
+
   try {
     const user = await employee
       .findById(req.user.id)
       .select("-password");
+
+      console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

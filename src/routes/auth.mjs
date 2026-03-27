@@ -38,7 +38,7 @@ const loginEmployee = async (req, res) => {
 
     return res.json({ message: "Login successful", role: user.role });
 
-  } catch (err) {
+  } catch (err) { 
     return res.status(500).json({ message: err.message });
   }
 };
